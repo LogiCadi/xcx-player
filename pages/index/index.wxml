@@ -1,0 +1,35 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='search-container'>
+    <input class='search' confirm-type='search' value="{{input}}" placeholder="请输入想听的歌曲 啥都有哦~" bindblur='searchsongs' auto-focus/>
+  </view>
+
+  <view class='search-list'>
+    <block wx:for="{{searchlist}}" wx:key="item.id">
+      <view class='search-list-item' bindtap='playSong' id='{{item.id}}'>
+        <view class='item-title'>{{item.name}}</view>
+        <view class='item-desc'>{{item.ar[0].name}}
+          <block wx:if="{{item.alia[0]}}"> - </block>
+          {{item.alia[0]}}
+        </view>
+      </view>
+    </block>
+  </view>
+
+
+  <view class='player'>
+    <view class='img'>
+      <image src='{{songinfo.al.picUrl}}'></image>
+    </view>
+    <view class='player-text'>
+      <view class='player-text-title'>{{songinfo.name}}</view>
+      <view class='player-text-desc'>{{songinfo.ar[0].name}}
+        <block wx:if="{{songinfo.alia[0]}}"> - </block>
+        {{songinfo.alia[0]}}</view>
+    </view>
+    
+    <view class='player-btn-container' wx:if="{{songinfo.name}}">
+      <view class='play-btn iconfont icon-playfill'></view>
+    </view>
+  </view>
+</view>

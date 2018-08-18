@@ -1,0 +1,37 @@
+/**index.wxss**/
+@import '/assets/iconfont.wxss';
+
+.search-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background-color: #fff;
+}
+
+.container .search {
+  padding: 20rpx;
+  border-bottom: 2px solid #add8e6;
+  margin: 10rpx 20rpx 0;
+}
+
+.search-list {
+  padding: 12rpx;
+  margin-top: 110rpx;
+  margin-bottom: 100rpx;
+}
+
+.search-list-item {
+  padding: 20rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-list-item .item-title {
+  font-size: 32rpx;
+}
+
+.search-list-item .item-desc {
+  padding-top: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}

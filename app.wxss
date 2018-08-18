@@ -1,0 +1,62 @@
+/**app.wxss**/
+
+page {
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+/* 底部播放器 */
+
+.player {
+  position: fixed;
+  bottom: 0;
+  background-color: lightblue;
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+}
+
+.player .img {
+  display: flex;
+  align-items: center;
+}
+
+.player .img image {
+  width: 80rpx;
+  height: 80rpx;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.player-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.player-text-title {
+  font-size: 32rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-text-desc {
+  font-size: 24rpx;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-btn-container {
+  border: 1px solid #333;
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+  padding: 5rpx;
+  display: flex;
+  align-items: center;
+}
