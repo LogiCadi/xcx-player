@@ -1,11 +1,16 @@
 /**index.wxss**/
-@import '/assets/iconfont.wxss';
+
+.container {
+  height: 100%;
+  top: 0;
+  position: relative;
+}
 
 .search-container {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 99; /*  */
   background-color: #fff;
 }
 
@@ -15,10 +20,33 @@
   margin: 10rpx 20rpx 0;
 }
 
+.search-history {
+  padding: 110rpx 12rpx 100rpx;
+}
+
+.search-history .title {
+  margin: 10rpx 30rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.search-history-item {
+  margin: 10rpx 14rpx;
+  padding: 6rpx 18rpx;
+  color: #333;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 30rpx;
+}
+
+.search-history .splite {
+  height: 1px;
+  background-color: #ddd;
+  margin: 10rpx;
+}
+
 .search-list {
-  padding: 12rpx;
-  margin-top: 110rpx;
-  margin-bottom: 100rpx;
+  padding: 110rpx 12rpx;
 }
 
 .search-list-item {
@@ -28,10 +56,25 @@
 
 .search-list-item .item-title {
   font-size: 32rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-list-item .item-desc {
   padding-top: 10rpx;
   font-size: 24rpx;
   color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-list-item .item-alia {
+  padding-top: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -1,19 +1,41 @@
 /**app.wxss**/
+@import '/assets/iconfont.wxss';
 
 page {
   font-size: 30rpx;
   box-sizing: border-box;
+  height: 100%;
+}
+
+view {
+  box-sizing: border-box;
+}
+
+.tapclass {
+  background: rgba(230, 230, 230, 0.3);
 }
 
 /* 底部播放器 */
 
 .player {
   position: fixed;
+  justify-content: space-between;
   bottom: 0;
-  background-color: lightblue;
+  background-color: #add8e6;
   height: 100rpx;
   width: 100%;
   display: flex;
+}
+
+.player .nodata {
+  position: absolute;
+  line-height: 100rpx;
+  width: 100%;
+  background: linear-gradient(to right, red, blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 10rpx;
+  text-align: center;
 }
 
 .player .img {
@@ -24,16 +46,17 @@ page {
 .player .img image {
   width: 80rpx;
   height: 80rpx;
-  padding: 5px;
+  margin: 10rpx;
   border-radius: 5px;
   overflow: hidden;
 }
 
 .player-text {
   display: flex;
+  padding: 10rpx 0;
   flex-direction: column;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-around;
+  width: 550rpx;
 }
 
 .player-text-title {
@@ -52,11 +75,23 @@ page {
 }
 
 .player-btn-container {
-  border: 1px solid #333;
-  border-radius: 50%;
-  width: 50rpx;
-  height: 50rpx;
-  padding: 5rpx;
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
   display: flex;
+  justify-content: center;
   align-items: center;
+  border-radius: 50%;
+}
+
+.player-btn-container .iconfont {
+  font-size: 54rpx;
+}
+
+.player-btn-container .iconfont.icon-pause {
+  color: #888;
+}
+
+.player-btn-container .iconfont.icon-play1 {
+  color: #333;
 }

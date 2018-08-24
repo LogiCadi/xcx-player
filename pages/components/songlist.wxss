@@ -1,0 +1,64 @@
+.songlist-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.songlist {
+  height: 600rpx;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 15px 15px 0 0;
+  bottom: 0;
+  position: absolute;
+  /* overflow: auto; */
+  padding: 16rpx 0;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.3);
+  animation: rise 0.3s ease forwards;
+  transform: translateY(600rpx);
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.songlist-item {
+  vertical-align: baseline;
+  padding: 30rpx 60rpx 30rpx 20rpx;
+  margin: 0 30rpx;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.songlist-item:last-child {
+  border-bottom: none;
+}
+
+.songlist-item .small {
+  color: #666;
+  font-size: 24rpx;
+}
+
+.songlist-item#active {
+  color: #ca0000;
+}
+
+.songlist-item#active .small {
+  color: #ca0000;
+}
+
+.songlist-item .del {
+  position: absolute;
+  padding: 30rpx;
+  right: 0rpx;
+  top: 8rpx;
+  color: #333;
+  font-size: 26rpx;
+}

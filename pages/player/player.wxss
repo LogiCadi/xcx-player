@@ -1,0 +1,195 @@
+@import '../components/songlist.wxss';
+
+.container {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.container .flask {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  -webkit-filter: blur(8px) brightness(40%);
+}
+
+.content {
+  height: 70%;
+}
+
+.content swiper-item:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .diezi {
+  animation: rotate 30s linear infinite forwards;
+  width: 500rpx;
+  height: 500rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(173, 215, 229, 0.6);
+  position: relative;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.running {
+  animation-play-state: running !important;
+}
+
+.pause {
+  animation-play-state: paused !important;
+}
+
+.container .diezi .pic {
+  position: absolute;
+  width: 340rpx;
+  height: 340rpx;
+  top: 80rpx;
+  left: 80rpx;
+  border-radius: 50%;
+}
+
+.container .helpImgLoad {
+  display: none;
+}
+
+.container .content .lyric-content {
+  text-align: center;
+  height: 80%;
+  width: 780rpx;
+  padding-top: 20%;
+}
+
+.container .content .lrc-item {
+  color: #aaa;
+  padding: 20rpx 70rpx 20rpx 40rpx;
+}
+
+.container .content .lrc-item#active {
+  color: #85d4ee;
+}
+
+.container .content .lrc-item:first-child {
+  padding-top: 200rpx;
+}
+
+.container .content .lrc-item:last-child {
+  padding-bottom: 200rpx;
+}
+
+.control {
+  position: fixed;
+  bottom: 0;
+  height: 300rpx;
+  width: 100%;
+  color: rgb(207, 230, 238);
+}
+
+.control .progress {
+  position: relative;
+  height: 60rpx;
+  width: 100%;
+  font-size: 24rpx;
+  line-height: 60rpx;
+}
+
+.control .progress .left {
+  position: absolute;
+  left: 48rpx;
+  top: 0;
+}
+
+.control .progress .right {
+  position: absolute;
+  right: 48rpx;
+  top: 0;
+}
+
+.control .progress-bar {
+  height: 6rpx;
+  width: 500rpx;
+  background-color: #adbbbd;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 60rpx;
+}
+
+.control .progress-p {
+  height: 6rpx;
+  width: 500rpx;
+  background-color: #0d64b4;
+  position: absolute;
+  right: 16rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.control .movebar-wrapper {
+  position: absolute;
+  height: 60rpx;
+  width: 500rpx;
+  overflow-x: hidden;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.control .movebar-wrapper .movebar {
+  top: 22rpx;
+  left: 0;
+  width: 16rpx;
+  height: 16rpx;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #ccc;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+  animation: buling 1.5s ease infinite alternate;
+}
+
+@keyframes buling {
+  to {
+    background-color: #68bedb;
+  }
+}
+
+.control .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 14rpx;
+  height: 240rpx;
+}
+
+.control .btn-group .iconfont {
+  display: inline-block;
+  margin: 24rpx;
+  font-size: 70rpx;
+  border-radius: 50%;
+  padding: 10rpx;
+}
+
+.control .btn-group .loop {
+  font-size: 40rpx;
+}
+
+.control .btn-group .playOrPause {
+  font-size: 100rpx;
+}
