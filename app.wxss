@@ -25,6 +25,7 @@ view {
   height: 100rpx;
   width: 100%;
   display: flex;
+  z-index: 9;
 }
 
 .player .nodata {
@@ -56,7 +57,7 @@ view {
   padding: 10rpx 0;
   flex-direction: column;
   justify-content: space-around;
-  width: 550rpx;
+  width: 470rpx;
 }
 
 .player-text-title {
@@ -74,24 +75,109 @@ view {
   text-overflow: ellipsis;
 }
 
-.player-btn-container {
+.player-btn-container, .songlist-btn-container {
   width: 80rpx;
   height: 80rpx;
+  flex: 0 0 80rpx;
   margin: 10rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  font-size: 54rpx;
+}
+
+.player-btn-container {
+  margin-right: 0;
+}
+
+.songlist-btn-container {
+  margin-left: 0;
 }
 
 .player-btn-container .iconfont {
   font-size: 54rpx;
+  color: #666;
 }
 
-.player-btn-container .iconfont.icon-pause {
-  color: #888;
+.songlist-btn-container .iconfont {
+  font-size: 66rpx;
+  color: #666;
 }
 
-.player-btn-container .iconfont.icon-play1 {
+.player-btn-container .iconfont.icon-pause.animation {
+  animation: buling 1.5s ease infinite alternate;
+}
+
+@keyframes buling {
+  to {
+    color: #68bedb;
+  }
+}
+
+/* 播放列表 */
+
+.songlist-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.songlist {
+  height: 600rpx;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  bottom: 0;
+  position: absolute;
+  padding: 12rpx 0;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.3);
+  animation: rise 0.3s ease forwards;
+  transform: translateY(600rpx);
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.songlist-item {
+  vertical-align: baseline;
+  padding: 30rpx 60rpx 30rpx 20rpx;
+  margin: 0 30rpx;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.songlist-item:last-child {
+  border-bottom: none;
+}
+
+.songlist-item .small {
+  color: #666;
+  font-size: 24rpx;
+}
+
+.songlist-item#active {
+  color: #ca0000;
+}
+
+.songlist-item#active .small {
+  color: #ca0000;
+}
+
+.songlist-item .del {
+  position: absolute;
+  padding: 30rpx;
+  right: 0rpx;
+  top: 8rpx;
   color: #333;
+  font-size: 26rpx;
 }

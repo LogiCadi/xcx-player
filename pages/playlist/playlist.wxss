@@ -1,0 +1,156 @@
+/* pages/playlist/playlist.wxss */
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.header-bg {
+  height: 500rpx;
+  background-size: 10000%;
+  background-position: center;
+  -webkit-filter: brightness(70%);
+  color: #fff;
+  background-color: lightblue;
+}
+
+.header-bg.singer {
+  background-size: cover;
+  -webkit-filter: none;
+}
+
+.header-pic {
+  height: 260rpx;
+  width: 260rpx;
+  border-radius: 8rpx;
+  margin: 6rpx;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 80rpx;
+  left: 40rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.header-pic.iconfont {
+  line-height: 260rpx;
+  text-align: center;
+  font-size: 200rpx;
+  color: #fff;
+  background-color: lightblue;
+}
+
+.header-pic .playcount {
+  color: #fff;
+  font-size: 22rpx;
+  float: right;
+  margin: 4rpx 8rpx;
+}
+
+.header-container .text {
+  position: absolute;
+  top: 100rpx;
+  width: 370rpx;
+  right: 50rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #efefef;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.header-container text {
+  font-size: 20rpx;
+  position: absolute;
+  width: 370rpx;
+  top: 220rpx;
+  right: 50rpx;
+  font-weight: 600;
+  color: #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.main-container {
+  background-color: #fff;
+  margin-top: -60rpx;
+  border-radius: 30rpx 30rpx 0 0;
+  position: relative;
+  z-index: 1;
+  min-height: 100rpx;
+}
+
+.main-container .playall {
+  padding: 30rpx 60rpx 30rpx 20rpx;
+  margin: 0 30rpx;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+
+.main-container .nodata {
+  padding: 30rpx 60rpx 30rpx 20rpx;
+  margin: 0 30rpx;
+  position: relative;
+  text-align: center;
+  color: #666;
+}
+
+.main-container .playall .iconfont {
+  font-size: 48rpx;
+  margin-right: 10rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main-container .playall .text {
+  font-size: 34rpx;
+  /* padding: 10rpx 20rpx; */
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.main-container .playall .small {
+  /* padding: 10rpx 20rpx; */
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 24rpx;
+  color: #888;
+}
+
+.playlist-item {
+  vertical-align: baseline;
+  padding: 30rpx 60rpx 30rpx 20rpx;
+  margin: 0 30rpx;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-item:last-child {
+  border-bottom: none;
+}
+
+.playlist-item.has-songlist:last-child {
+  margin-bottom: 100rpx;
+}
+
+.playlist-item.nobottom:last-child {
+  margin-bottom: 0;
+}
+
+.playlist-item .small {
+  color: #666;
+  font-size: 24rpx;
+}

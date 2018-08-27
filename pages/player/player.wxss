@@ -1,26 +1,40 @@
-@import '../components/songlist.wxss';
-
 .container {
   height: 100%;
   position: relative;
   overflow: hidden;
 }
 
+.songinfo-other {
+  width: 60rpx;
+  font-size: 60rpx;
+  margin: 10rpx;
+  line-height: 60rpx;
+  text-align: center;
+  height: 60rpx;
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  color: #cfe6ee;
+  border-radius: 50%;
+}
+
 .container .flask {
   position: absolute;
-  top: -5%;
-  left: -5%;
-  width: 110%;
-  height: 110%;
-  background-size: cover;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background-size: 300%;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  -webkit-filter: blur(8px) brightness(40%);
+  -webkit-filter: blur(50px) brightness(60%);
 }
 
 .content {
-  height: 70%;
+  height: 60%;
+  position: relative;
+  top: 80rpx;
 }
 
 .content swiper-item:first-child {
@@ -71,9 +85,9 @@
 
 .container .content .lyric-content {
   text-align: center;
-  height: 80%;
+  height: 85%;
   width: 780rpx;
-  padding-top: 20%;
+  padding-top: 15%;
 }
 
 .container .content .lrc-item {
@@ -98,7 +112,7 @@
   bottom: 0;
   height: 300rpx;
   width: 100%;
-  color: rgb(207, 230, 238);
+  color: #cfe6ee;
 }
 
 .control .progress {
@@ -159,7 +173,7 @@
   height: 16rpx;
   position: absolute;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #ddd;
   box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
   animation: buling 1.5s ease infinite alternate;
 }
@@ -192,4 +206,20 @@
 
 .control .btn-group .playOrPause {
   font-size: 100rpx;
+}
+
+.songinfo.songlist {
+  height: auto;
+  max-height: 600rpx;
+}
+
+.songinfo.songlist .iconfont {
+  display: inline-block;
+  font-size: 40rpx;
+  vertical-align: -2rpx;
+  margin-right: 20rpx;
+}
+
+.songinfo.songlist .collection {
+  color: red;
 }

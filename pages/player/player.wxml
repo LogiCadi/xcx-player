@@ -1,5 +1,8 @@
 <!--pages/player/player.wxml-->
 <view class='container'>
+
+  <!-- 顶部歌曲详情按钮 -->
+  <view class='songinfo-other iconfont icon-switch' catchtap='showSonginfo' hover-class='tapclass' hover-stay-time="150"></view>
   <!-- 模糊遮罩 -->
   <view class='flask' style="background-image:url({{forLoadPic}})"></view>
 
@@ -28,7 +31,7 @@
       <view class='left'>{{currentTime}}</view>
       <view class='progress-bar'></view>
       <movable-area class="movebar-wrapper" bindtouchstart="seekTo">
-        <movable-view class='movebar {{playstatus == 0 && isLoad? "running":"pause"}}' direction="horizontal" damping="50" animation="false" x="{{movebarX}}" disabled>
+        <movable-view class='movebar {{playstatus == 0 && isLoad? "running":"pause"}}' direction="horizontal" damping="99999" animation="false" x="{{movebarX}}" disabled>
           <view class='progress-p'></view>
         </movable-view>
       </movable-area>
@@ -37,7 +40,9 @@
 
     <!-- 按钮 -->
     <view class='btn-group'>
-      <view class='loop iconfont icon-xunhuanbofang' catchtap='loop' hover-class='tapclass' hover-stay-time="150"></view>
+
+      <view class='loop iconfont icon-{{playWay}}' catchtap='playWay' hover-class='tapclass' hover-stay-time="150"></view>
+
       <view bindtap='preSong' class='pre iconfont icon-shangyishoushangyige' hover-class='tapclass' hover-stay-time="150"></view>
 
       <view bindtap='playOrPause' class='playOrPause iconfont icon-pause' wx:if="{{playstatus == 0}}" hover-class='tapclass' hover-stay-time="150"></view>
@@ -47,14 +52,27 @@
       <view class='list iconfont icon-other' catchtap='showSongList' hover-class='tapclass' hover-stay-time="150"></view>
     </view>
   </view>
-  <!-- 歌曲列表 -->
-  <view class='songlist-mask' bindtap='hideSongList' wx:if="{{showList}}">
-    <scroll-view scroll-y scroll-into-view="active" class='songlist'>
-      <view wx:for="{{songList}}" wx:key="{{item.id}}" class='songlist-item' id='{{currentIndex == index ? "active" : ""}}' data-index="{{index}}" catchtap='changeSong' hover-class='tapclass' hover-stay-time="100">{{item.name}}
-        <text class='small'> - {{item.ar[0].name}}</text>
+</view>
+<!-- 歌曲列表 -->
+<view class='songlist-mask' bindtap='hideSongList' wx:if="{{showList}}">
+  <scroll-view scroll-y scroll-into-view="active" class='songlist'>
+    <view wx:for="{{songList}}" wx:key="{{item.id}}" class='songlist-item' id='{{currentIndex == index ? "active" : ""}}' data-index="{{index}}" catchtap='changeSong' hover-class='tapclass' hover-stay-time="100">{{item.name}}
+      <text class='small'> - {{item.ar[0].name}}</text>
 
-        <view class='del iconfont icon-shanchu' catchtap='delOneSong' hover-class='none' hover-stop-propagation="true" data-index="{{index}}"></view>
-      </view>
-    </scroll-view>
-  </view>
+      <view class='del iconfont icon-shanchu' catchtap='delOneSong' hover-class='none' hover-stop-propagation="true" data-index="{{index}}"></view>
+    </view>
+  </scroll-view>
+</view>
+<!-- 歌曲列表 -->
+<view class='songlist-mask' bindtap='hideSonginfo' wx:if="{{showSonginfo}}">
+  <scroll-view class='songinfo songlist'>
+    <view class='songlist-item' catchtap='singerInfo' hover-class='tapclass' hover-stay-time="100">
+      <view class='iconfont icon-addressbook'></view>歌手：{{songinfo.ar[0].name}}</view>
+
+    <view wx:if="{{!songinfo.love}}" class='songlist-item' catchtap='addLove' hover-class='tapclass' hover-stay-time="100">
+      <view class='iconfont icon-shoucang'></view>收藏本曲</view>
+    <view wx:if="{{songinfo.love}}" class='songlist-item collection' catchtap='addLove' hover-class='tapclass' hover-stay-time="100">
+      <view class='iconfont icon-shoucang'></view>已收藏</view>
+
+  </scroll-view>
 </view>

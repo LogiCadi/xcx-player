@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/player/player"
+    "pages/player/player",
+    "pages/playlist/playlist"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -9,5 +10,7 @@
     "navigationBarTitleText": "音乐Player",
     "navigationBarTextStyle": "black"
   },
-  "requiredBackgroundModes": ["audio"]
+  "requiredBackgroundModes": [
+    "audio"
+  ]
 }

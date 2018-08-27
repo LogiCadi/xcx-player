@@ -1,29 +1,43 @@
 <!--index.wxml-->
 <view class="container">
   <!-- 搜索 -->
-  <view class='search-container'>
-    <input class='search' confirm-type='search' value="{{keywords}}" placeholder="请输入想听的歌曲 啥都有哦~" bindinput='changeInput' bindblur='blurAndSearch' auto-focus/>
+  <view wx:if="{{flag}}" class='search-container'>
+    <view class='person-center iconfont icon-other' hover-class='tapclass' hover-stay-time="150" catchtap='showAside'></view>
+    <input class='search' confirm-type='search' value="{{keywords}}" placeholder="请输入想听的歌曲 啥都有哦~" bindinput='changeInput' bindconfirm='blurAndSearch' auto-focus/>
+    <view class='iconfont icon-shanchu' wx:if="{{isInput}}" hover-class='tapclass' hover-stay-time="150" catchtap='clearInput'></view>
   </view>
-  <!-- 搜索历史+每日推荐 -->
-  <view class='search-history' wx:if="{{!isInput && searchHistory.length > 0}}">
-    <view class='title'>搜索历史</view>
-    <view class='search-history-item' data-val="{{item}}" bindtap='addAndSearch' wx:for="{{searchHistory}}" wx:key="index">{{item}}</view>
-    <!-- <view class='splite'></view> -->
-  </view>
-  <!-- 搜索列表 -->
-  <view class='search-list' wx:if="{{isInput}}">
-    <block wx:for="{{searchlist}}" wx:key="item.id">
-      <view class='search-list-item' hover-class='tapclass' hover-start-time="200" hover-stay-time="150" bindtap='playSong' id='{{item.id}}'>
-        <view class='item-title'>{{item.name}}</view>
-        <view class='item-desc'>{{item.ar[0].name}} - {{item.al.name}}</view>
-        <view class='item-alia' wx:if="{{item.alia[0]}}">{{item.alia[0]}}</view>
+  <view class='main-container {{songList.length > 0? "has-songlist":""}} {{flag?"":"notop"}}'>
+    <!-- 搜索历史 -->
+    <view class='search-history' wx:if="{{flag && !isInput && searchHistory.length > 0}}">
+      <view class='title'>搜索历史</view>
+      <view class='search-history-item' data-val="{{item}}" data-index="{{index}}" bindtap='addAndSearch' bindlongpress="delSearchHistory" wx:for="{{searchHistory}}" wx:key="index" hover-class='tapclass' hover-stay-time="150">{{item}}</view>
+      <!-- <view class='splite'></view> -->
+    </view>
+    <!-- 歌单 -->
+    <view class='recommend-playlist' wx:if="{{!isInput}}">
+      <view class='title'>推荐歌单</view>
+      <view class='playlist-list'>
+        <view class='playlist-item' bindtap='goPlaylist' data-playlist="{{item}}" wx:for="{{playlists}}" wx:key="{{index}}" style='background-image:url({{item.coverImgUrl}})'>
+          <view class='playcount iconfont icon-erji'>{{item.playCount}}</view>
+          <view class='text'>{{item.name}}</view>
+        </view>
       </view>
-    </block>
-  </view>
 
+    </view>
+    <!-- 搜索列表 -->
+    <view class='search-list' wx:if="{{isInput}}">
+      <block wx:for="{{searchlist}}" wx:key="item.id">
+        <view class='search-list-item' hover-class='tapclass' hover-start-time="200" hover-stay-time="150" bindtap='playSong' data-index="{{index}}">
+          <view class='item-title'>{{item.name}}</view>
+          <view class='item-desc'>{{item.ar[0].name}} - {{item.al.name}}</view>
+          <view class='item-alia' wx:if="{{item.alia[0]}}">{{item.alia[0]}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
   <!-- 底部固定播放器 -->
-  <view class='player' bindtap='goPlayer'>
-    <view class='nodata' wx:if="{{!songinfo.name}}" animation="{{animationData}}">永远相信美好的事情即将发生</view>
+  <view class='player' bindtap='goPlayer' wx:if="{{flag && songList.length > 0}}">
+    <!-- <view class='nodata' wx:if="{{!songinfo.name}}" animation="{{animationData}}">永远相信美好的事情即将发生</view> -->
     <view class='img'>
       <image src='{{songinfo.al.picUrl}}'></image>
     </view>
@@ -33,10 +47,37 @@
         <block wx:if="{{songinfo.alia[0]}}"> - </block>
         {{songinfo.alia[0]}}</view>
     </view>
-
+    <!-- 按钮组 -->
     <view class='player-btn-container' catchtap='playOrPause' hover-class='tapclass' hover-stay-time="150" wx:if="{{songinfo.name}}">
-      <view class='play-btn iconfont icon-pause' wx:if="{{playstatus == 0}}"></view>
+      <view class='play-btn iconfont icon-pause {{isLoad?"animation":""}}' wx:if="{{playstatus == 0}}"></view>
       <view class='play-btn iconfont icon-play1' wx:if="{{playstatus != 0}}"></view>
     </view>
+    <view class='songlist-btn-container' catchtap='showSongList' hover-class='tapclass' hover-stay-time="150" wx:if="{{songinfo.name}}">
+      <view class='list iconfont icon-other'></view>
+    </view>
   </view>
+
 </view>
+<!-- 歌曲列表 -->
+<view class='songlist-mask' bindtap='hideSongList' wx:if="{{showList}}">
+  <scroll-view scroll-y scroll-into-view="active" class='songlist'>
+    <view wx:for="{{songList}}" wx:key="{{item.id}}" class='songlist-item' id='{{currentIndex == index ? "active" : ""}}' data-index="{{index}}" catchtap='changeSong' hover-class='tapclass' hover-stay-time="100">{{item.name}}
+      <text class='small'> - {{item.ar[0].name}}</text>
+
+      <view class='del iconfont icon-shanchu' catchtap='delOneSong' hover-class='none' hover-stop-propagation="true" data-index="{{index}}"></view>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 侧边栏 -->
+<view class='aside-mask {{showAside > 0? "show":"hide"}} {{transitionend? "zil":"zih"}}' bindtransitionend="changeZindex" catchtap='hideAside'></view>
+<movable-area class='aside-container'>
+  <movable-view class='aside-content' direction="horizontal" out-of-bounds="true" damping="40" animation="false" x="{{showAside}}" bindchange="changeAside" catchtouchend='asideTouchend'>
+    <view class='item listen-history' catchtap="goListenHistory" hover-class='tapclass' hover-stay-time="100">
+      <view class='iconfont icon-erji'></view>听歌记录</view>
+    <view class='item my-love' catchtap="goMylove" hover-class='tapclass' hover-stay-time="100">
+      <view class='iconfont icon-shoucang'></view>我的收藏</view>
+      <view class='author-info iconfont icon-xinxi' hover-class='tapclass' hover-stay-time="100" catchtap='showAuthorInfo'></view>
+  </movable-view>
+</movable-area>
+<view class='other-info iconfont icon-xinxi' wx:if="{{!flag}}" hover-class='tapclass' hover-stay-time="100" catchtap='showOtherInfo'></view>

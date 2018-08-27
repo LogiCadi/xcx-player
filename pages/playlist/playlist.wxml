@@ -1,0 +1,81 @@
+<!--pages/playlist/playlist.wxml-->
+<view class='container'>
+  <!-- 头部 -->
+  <view class='header-container'>
+
+    <block wx:if="{{topic == 'playlist'}}">
+      <view class='header-bg' style='background-image:url({{playlist.coverImgUrl}})'></view>
+      <view class='header-pic' style='background-image:url({{playlist.coverImgUrl}})'>
+        <view class='playcount iconfont icon-erji'>{{playlist.playCount}}</view>
+      </view>
+      <view class='text'>{{playlist.name}}</view>
+      <text class='desc'>{{playlist.description}}</text>
+    </block>
+
+    <block wx:if="{{topic == 'listenHistory' || topic =='mylove'}}">
+      <view class='header-bg' style='background-image:url({{playlistSongs[0].al.picUrl}})'></view>
+      <view class='header-pic iconfont icon-erji' style='background-image:url({{playlistSongs[0].al.picUrl}})' wx:if="{{topic == 'listenHistory'}}"></view>
+      <view class='header-pic iconfont icon-shoucang' style='background-image:url({{playlistSongs[0].al.picUrl}})' wx:if="{{topic == 'mylove'}}"></view>
+      <view class='text' wx:if="{{topic == 'listenHistory'}}">听歌记录</view>
+      <view class='text' wx:if="{{topic == 'mylove'}}">我的收藏</view>
+    </block>
+
+    <block wx:if="{{topic == 'singer'}}">
+      <view class='header-bg singer' style='background-image:url({{singerinfo.picUrl}})'></view>
+    </block>
+
+  </view>
+
+  <!-- 歌单内容 -->
+  <view class='main-container'>
+
+    <view wx:if="{{flag && playlistSongs.length > 0}}" class='playall' catchtap='playall' hover-class='tapclass' hover-stay-time="100">
+      <view class='iconfont icon-play1'></view>
+      <view class='text'>播放全部
+        <view class='small' wx:if="{{topic != 'singer'}}">(共{{playlistSongs.length}}首)</view>
+        <view class='small' wx:if="{{topic == 'singer'}}">(热门{{playlistSongs.length}}首)</view>
+      </view>
+    </view>
+    <block wx:if="{{topic =='listenHistory' || topic == 'mylove'}}">
+      <view wx:if="{{playlistSongs.length == 0 }}" class='nodata'>
+        快去听歌吧~
+      </view>
+    </block>
+    <view class='playlist-item {{songList.length > 0? "has-songlist":""}} {{flag?"":"nobottom"}}' wx:for="{{playlistSongs}}" wx:key="{{index}}" catchtap='playSong' data-index="{{index}}" hover-class='{{flag?"tapclass":""}}' hover-stay-time="100">{{item.name}}
+      <text class='small'> - {{item.ar[0].name}}</text>
+    </view>
+  </view>
+
+  <!-- 底部固定播放器 -->
+  <view class='player' bindtap='goPlayer' wx:if='{{flag && songList.length > 0}}'>
+    <!-- <view class='nodata' wx:if="{{!songinfo.name}}" animation="{{animationData}}">永远相信美好的事情即将发生</view> -->
+    <view class='img'>
+      <image src='{{songinfo.al.picUrl}}'></image>
+    </view>
+    <view class='player-text'>
+      <view class='player-text-title'>{{songinfo.name}}</view>
+      <view class='player-text-desc'>{{songinfo.ar[0].name}}
+        <block wx:if="{{songinfo.alia[0]}}"> - </block>
+        {{songinfo.alia[0]}}</view>
+    </view>
+    <!-- 按钮组 -->
+    <view class='player-btn-container' catchtap='playOrPause' hover-class='tapclass' hover-stay-time="150" wx:if="{{songinfo.name}}">
+      <view class='play-btn iconfont icon-pause {{isLoad?"animation":""}}' wx:if="{{playstatus == 0}}"></view>
+      <view class='play-btn iconfont icon-play1' wx:if="{{playstatus != 0}}"></view>
+    </view>
+    <view class='songlist-btn-container' catchtap='showSongList' hover-class='tapclass' hover-stay-time="150" wx:if="{{songinfo.name}}">
+      <view class='list iconfont icon-other'></view>
+    </view>
+  </view>
+
+</view>
+<!-- 歌曲列表 -->
+<view class='songlist-mask' bindtap='hideSongList' wx:if="{{showList}}">
+  <scroll-view scroll-y scroll-into-view="active" class='songlist'>
+    <view wx:for="{{songList}}" wx:key="{{item.id}}" class='songlist-item' id='{{currentIndex == index ? "active" : ""}}' data-index="{{index}}" catchtap='changeSong' hover-class='tapclass' hover-stay-time="100">{{item.name}}
+      <text class='small'> - {{item.ar[0].name}}</text>
+
+      <view class='del iconfont icon-shanchu' catchtap='delOneSong' hover-class='none' hover-stop-propagation="true" data-index="{{index}}"></view>
+    </view>
+  </scroll-view>
+</view>

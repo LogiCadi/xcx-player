@@ -2,8 +2,11 @@
 
 .container {
   height: 100%;
+  width: 100%;
+  position: absolute;
   top: 0;
-  position: relative;
+  left: 0;
+  overflow: auto;
 }
 
 .search-container {
@@ -14,20 +17,60 @@
   background-color: #fff;
 }
 
-.container .search {
+.search-container .person-center {
+  margin: 18rpx;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 60rpx;
+  position: absolute;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  line-height: 60rpx;
+  text-align: center;
+  color: #37a7cc;
+}
+
+.search-container .search {
   padding: 20rpx;
+  padding-right: 80rpx;
   border-bottom: 2px solid #add8e6;
-  margin: 10rpx 20rpx 0;
+  margin: 0 20rpx 0 96rpx;
+}
+
+.search-container .icon-shanchu {
+  margin: 16rpx;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  position: absolute;
+  border-radius: 50%;
+  right: 20rpx;
+  top: 0;
+  line-height: 60rpx;
+  text-align: center;
+}
+
+.main-container {
+  padding: 110rpx 2vw 0;
+}
+
+.main-container.has-songlist {
+  padding-bottom: 100rpx;
+}
+
+.main-container.notop {
+  padding-top: 0;
 }
 
 .search-history {
-  padding: 110rpx 12rpx 100rpx;
+  margin-bottom: 20rpx;
 }
 
 .search-history .title {
-  margin: 10rpx 30rpx;
-  font-size: 24rpx;
-  color: #666;
+  margin: 10rpx;
+  font-size: 32rpx;
+  font-weight: 600;
 }
 
 .search-history-item {
@@ -37,6 +80,10 @@
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 30rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 692rpx;
 }
 
 .search-history .splite {
@@ -45,8 +92,49 @@
   margin: 10rpx;
 }
 
-.search-list {
-  padding: 110rpx 12rpx;
+.recommend-playlist .title {
+  margin: 10rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.playlist-list {
+  margin-bottom: 20rpx;
+  position: relative;
+}
+
+.playlist-item {
+  height: 30vw;
+  width: 30vw;
+  display: inline-block;
+  border-radius: 8rpx;
+  vertical-align: middle;
+  margin: 1vw;
+  margin-bottom: 90rpx;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+.playlist-item .playcount {
+  color: #fff;
+  font-size: 22rpx;
+  float: right;
+  margin: 4rpx 8rpx;
+}
+
+.playlist-item .text {
+  position: absolute;
+  bottom: -76rpx;
+  width: 100%;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  padding: 4rpx;
 }
 
 .search-list-item {
@@ -77,4 +165,94 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.aside-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -2;
+  transition: opacity 0.5s linear;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.aside-mask.show {
+  opacity: 1;
+  z-index: 99;
+}
+
+.aside-mask.hide {
+  opacity: 0;
+  z-index: -2;
+}
+
+.aside-mask.hide.zil {
+  z-index: -2;
+}
+
+.aside-mask.hide.zih {
+  z-index: 99;
+}
+
+.aside-container {
+  height: 100%;
+  width: 460rpx;
+  position: absolute;
+  left: -460rpx;
+}
+
+.aside-container .aside-content {
+  position: absolute;
+  width: 1000rpx;
+  height: 100%;
+  /* padding: 20rpx 20rpx 20rpx 520rpx; */
+  left: -540rpx;
+  background-color: #fff;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.aside-container .aside-content .item {
+  margin-left: 480rpx;
+  margin-right: 20rpx;
+  padding: 30rpx 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.aside-container .aside-content .item .iconfont {
+  display: inline-block;
+  font-size: 40rpx;
+  vertical-align: -4rpx;
+  margin-right: 20rpx;
+}
+
+.aside-container .aside-content .item .iconfont.icon-erji {
+  font-size: 46rpx;
+}
+
+.aside-container .aside-content .author-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 12rpx;
+  font-size: 40rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.other-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 12rpx;
+  font-size: 40rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 50%;
 }
